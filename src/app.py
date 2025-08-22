@@ -28,6 +28,7 @@ def main(page: ft.Page):
             input_email.value = ""
             input_senha.value = ""
 
+            loading_indicator.visible = False
             page.go("/usuarios")
 
         else:
@@ -54,12 +55,13 @@ def main(page: ft.Page):
 
             response = post_usuario(nome, email, senha, papel, token)
 
-            if response.status_code == 201:
+            if response == 201:
                 snack_sucesso("Usuário cadastrado com sucesso!")
                 input_nome.value = ""
                 input_email.value = ""
                 input_senha.value = ""
                 input_papel.value = ""
+                page.update()
             else:
                 snack_error("Erro ao cadastrar usuário.")
 

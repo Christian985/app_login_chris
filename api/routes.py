@@ -38,7 +38,7 @@ def post_usuario(email, senha, nome, papel, token):
             "papel": papel,
         }
         response = requests.post(url, json=dados, headers={"Authorization": f"Bearer {token}"})
-        return response.json()
+        return response.status_code
     except Exception as e:
         print(e)
         return {
