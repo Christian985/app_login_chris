@@ -28,7 +28,7 @@ def get_usuarios(token):
             "Error": f"{e}",
         }
 
-def post_usuario(email, senha, nome, papel, token):
+def post_usuario(nome, senha, email, papel, token):
     try:
         url = f"{base_url}/usuarios"
         dados = {
