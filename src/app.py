@@ -33,7 +33,10 @@ def main(page: ft.Page):
         else:
             snack_error("Email ou senha incorretos.")
 
-
+    def click_logout(e):
+        page.client_storage.remove("access_token")
+        snack_sucesso("Logout realizado com sucesso!")
+        page.go("/login")
 
     def snack_sucesso(texto: str):
         page.snack_bar = ft.SnackBar(
@@ -191,7 +194,8 @@ def main(page: ft.Page):
     btn_logout = ft.TextButton(
         icon=Icons.LOGOUT,
         scale=1.5,
-        icon_color=Colors.RED_700
+        icon_color=Colors.RED_700,
+        on_click=click_logout,
     )
 
     btn_salvar = ft.FilledButton(
