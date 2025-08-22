@@ -33,10 +33,27 @@ def main(page: ft.Page):
         else:
             snack_error("Email ou senha incorretos.")
 
+
     def click_logout(e):
         page.client_storage.remove("access_token")
         snack_sucesso("Logout realizado com sucesso!")
         page.go("/login")
+
+
+    def click_salvar_usuario(e):
+        nome = input_nome.value
+        email = input_email.value
+        senha = input_senha.value
+        papel = input_papel.value
+
+        if nome and email and senha and papel:
+            loading_indicator.visible = True
+            page.update()
+
+            token = page.client_storage.get("access_token")
+
+            response = post_usuario(nome, email, senha, papel, token)
+
 
     def snack_sucesso(texto: str):
         page.snack_bar = ft.SnackBar(
@@ -46,6 +63,7 @@ def main(page: ft.Page):
         page.snack_bar.open = True
         page.overlay.append(page.snack_bar)
 
+
     def snack_error(texto: str):
         page.snack_bar = ft.SnackBar(
             content=ft.Text(texto),
@@ -53,6 +71,7 @@ def main(page: ft.Page):
         )
         page.snack_bar.open = True
         page.overlay.append(page.snack_bar)
+
 
     def atualizar_lista():
         # Pegar o token
@@ -73,6 +92,7 @@ def main(page: ft.Page):
                 )
             )
         page.update()
+
 
     def gerencia_rotas(e):
         page.views.clear()
