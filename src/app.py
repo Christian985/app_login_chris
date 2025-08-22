@@ -30,6 +30,9 @@ def main(page: ft.Page):
 
             page.go("/usuarios")
 
+        else:
+            snack_error("Email ou senha incorretos.")
+
 
 
     def snack_sucesso(texto: str):
@@ -55,6 +58,8 @@ def main(page: ft.Page):
         lv_usuarios.controls.clear()
 
         #Chamar a API
+        dados = get_usuarios()
+        usuarios = dados["usuarios"]
 
 
         for usuario in usuarios:
@@ -181,6 +186,7 @@ def main(page: ft.Page):
         icon=Icons.LOGIN,
         width=300,
         height=45,
+        on_click=click_login
     )
 
     btn_logout = ft.TextButton(
