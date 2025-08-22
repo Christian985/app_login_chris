@@ -52,13 +52,12 @@ def main(page: ft.Page):
         page.overlay.append(page.snack_bar)
 
     def atualizar_lista():
-        #Pegar o token
-
-
+        # Pegar o token
+        token = page.client_storage.get("access_token")
         lv_usuarios.controls.clear()
 
-        #Chamar a API
-        dados = get_usuarios()
+        # Chamar a API
+        dados = get_usuarios(token)
         usuarios = dados["usuarios"]
 
 

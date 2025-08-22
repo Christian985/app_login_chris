@@ -17,10 +17,10 @@ def post_login(email, senha):
             "Error": f"{e}",
         }
 
-def get_usuarios():
+def get_usuarios(token):
     try:
         url = f"{base_url}/usuarios"
-        response = requests.get(url)
+        response = requests.get(url, headers={"Authorization": f"Bearer {token}"})
         return response.json()
     except Exception as e:
         print(e)
@@ -28,7 +28,7 @@ def get_usuarios():
             "Error": f"{e}",
         }
 
-def post_usuarios(email, senha, nome, papel):
+def post_usuarios(email, senha, nome, papel, token):
     try:
         url = f"{base_url}/usuarios"
         dados = {
@@ -37,7 +37,7 @@ def post_usuarios(email, senha, nome, papel):
             "nome": nome,
             "papel": papel,
         }
-        response = requests.post(url, json=dados)
+        response = requests.post(url, json=dados, headers={"Authorization": f"Bearer {token}"})
         return response.json()
     except Exception as e:
         print(e)
