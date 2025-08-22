@@ -232,6 +232,7 @@ def main(page: ft.Page):
         style=ft.ButtonStyle(text_style=ft.TextStyle(size=16)),
         width=page.window.width,
         height=45,
+        on_click=click_salvar_usuario
     )
 
     btn_cancelar = ft.OutlinedButton(
