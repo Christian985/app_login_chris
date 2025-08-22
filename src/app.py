@@ -65,6 +65,8 @@ def main(page: ft.Page):
             else:
                 snack_error("Erro ao cadastrar usuário.")
 
+            loading_indicator.visible = False
+
 
     def snack_sucesso(texto: str):
         page.snack_bar = ft.SnackBar(
