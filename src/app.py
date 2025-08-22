@@ -131,6 +131,8 @@ def main(page: ft.Page):
 
         if page.route == "/usuarios":
 
+            fab_add_usuario.visible = page.client_storage.get("papel") == "admin"
+
             atualizar_lista()
 
             page.views.append(
