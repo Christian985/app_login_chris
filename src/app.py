@@ -15,6 +15,21 @@ def main(page: ft.Page):
     # Funções
     def click_login(e):
         loading_indicator.visible = True
+        page.update()
+
+        dados = post_login(input_email.value, input_senha.value)
+
+        if "access_token" in dados:
+            snack_sucesso("Login realizado com sucesso!")
+
+            page.client_storage.set("access_token", dados["access_token"])
+            page.client_storage.set("papel", dados["papel"])
+
+            input_email.value = ""
+            input_senha.value = ""
+
+            page.go("/usuarios")
+
 
 
     def snack_sucesso(texto: str):
