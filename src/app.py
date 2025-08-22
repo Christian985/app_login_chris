@@ -54,6 +54,15 @@ def main(page: ft.Page):
 
             response = post_usuario(nome, email, senha, papel, token)
 
+            if response.status_code == 201:
+                snack_sucesso("Usuário cadastrado com sucesso!")
+                input_nome.value = ""
+                input_email.value = ""
+                input_senha.value = ""
+                input_papel.value = ""
+            else:
+                snack_error("Erro ao cadastrar usuário.")
+
 
     def snack_sucesso(texto: str):
         page.snack_bar = ft.SnackBar(
